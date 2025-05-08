@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feliz Dia das Mães!</title>
+
+  <!-- Fonte cursiva elegante -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      color: #d6336c;
+      font-size: 3.5em;
+      margin-top: 20px;
+      animation: fadeIn 2s ease;
+    }
+
+    p {
+      color: #333;
+      font-size: 1.5em;
+      max-width: 700px;
+      margin-top: 10px;
+      margin-bottom: 30px;
+      animation: fadeIn 2.5s ease;
+    }
+
+@keyframes subir {
+  0% {
+    transform: translateY(0) scale(1) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.5) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+    #tempo {
+      font-size: 1.2em;
+      color: #6b3c53;
+      font-weight: bold;
+      margin-bottom: 30px;
+      animation: fadeIn 3s ease;
+    }
+
+    .carrossel {
+  width: 90%;
+  max-width: 300px;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+}
+
+.carrossel .faixa {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carrossel img {
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+
+
+    button.musica {
+      background-color: #d6336c;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    button.musica:hover {
+      background-color: #b02a5a;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 1em;
+      color: #999;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Feliz Dia das Mães!</h1>
+
+  <p>Hoje celebramos o amor mais puro e verdadeiro. Mãe, obrigado por cada gesto de carinho, cada palavra de apoio e todo seu amor incondicional. 💖</p>
+
+  <div id="tempo"></div>
+
+  <div class="carrossel">
+    <div class="faixa">
+      <img src="img/img1.jpg" alt="imagem 1" />
+      <img src="img/img2.jpg" alt="imagem 2" />
+      <img src="img/img3.jpg" alt="imagem 3" />
+      <img src="img/img4.jpg" alt="imagem 4" />
+      <img src="img/img5.jpg" alt="imagem 5" />
+      <img src="img/img7.jpg" alt="imagem 7" />
+      <img src="img/img8.jpg" alt="imagem 8" />
+      <img src="img/img9.jpg" alt="imagem 9" />
+      <img src="img/img10.jpg" alt="imagem 10" />
+
+    </div>
+  </div>
+  
+
+  <button class="musica" onclick="tocarMusica()">💗 Tocar Música</button>
+  <audio id="musica" src="musica/rita.mp3"></audio>
+
+  <footer>
+    &copy; 2025 - Com todo amor para a melhor mãe do mundo 🌸
+  </footer>
+
+  
+
+<script>
+    function tocarMusica() {
+      const audio = document.getElementById('musica');
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+
+    function calcularTempo() {
+      const nascimento = new Date(2007, 11, 26); // 26/12/2007
+      const diaDasMaes = new Date(2025, 4, 11);  // 11/05/2025
+
+      let anos = diaDasMaes.getFullYear() - nascimento.getFullYear();
+      let meses = diaDasMaes.getMonth() - nascimento.getMonth();
+      let dias = diaDasMaes.getDate() - nascimento.getDate();
+
+      if (dias < 0) {
+        meses--;
+        dias += new Date(diaDasMaes.getFullYear(), diaDasMaes.getMonth(), 0).getDate();
+      }
+
+      if (meses < 0) {
+        anos--;
+        meses += 12;
+      }
+
+      document.getElementById('tempo').textContent =
+        `Eu te amo há ${anos} anos, ${meses} meses e ${dias} dias 🌟`;
+    }
+
+    calcularTempo();
+
+    // Carrossel automático
+    const faixa = document.querySelector('.carrossel .faixa');
+const imagens = document.querySelectorAll('.carrossel img');
+let indiceAtual = 0;
+
+function avancarImagem() {
+  indiceAtual = (indiceAtual + 1) % imagens.length;
+  faixa.style.transform = `translateX(-${indiceAtual * 100}%)`;
+}
+
+setInterval(avancarImagem, 5000); // muda a imagem a cada 4 segundos
+
+</script>
+ 
+</body>
+</html>
+
+
+
+
